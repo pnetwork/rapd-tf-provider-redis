@@ -1,0 +1,25 @@
+{
+    "terraform": {
+        "required_providers": {
+            "redis": {
+                "source": "rapd.com/tfplugin/redis"
+            }
+        }
+    },
+    "provider": {
+        "redis": {
+            "host": "192.168.106.2",
+            "port": 31666,
+            "username": "user1",
+            "password": "000000"
+        }
+    },
+    "resource": {
+        "redis_user": {
+            "redis-user1": {
+                "username": "cccccc",
+                "password": "222222"
+            }
+        }
+    }
+}
