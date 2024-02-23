@@ -65,7 +65,10 @@ func (p *RedisProvider) Schema(ctx context.Context, req provider.SchemaRequest, 
 	}
 }
 
-func (p *RedisProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+func (p *RedisProvider) Configure(
+	ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse,
+) {
+
 	var data RedisProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)

@@ -69,7 +69,8 @@ func (r *UserResource) Configure(ctx context.Context, req resource.ConfigureRequ
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *redis.Client, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *redis.Client, got: %T.", req.ProviderData)+
+				"Please report this issue to the provider developers.",
 		)
 
 		return
@@ -178,6 +179,9 @@ func (r *UserResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 	}
 }
 
-func (r *UserResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *UserResource) ImportState(
+	ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse,
+) {
+
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }
