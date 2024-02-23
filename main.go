@@ -9,7 +9,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/pnetwork/radis-tf-plugin/internal/provider"
+	"github.com/pnetwork/rapd-tf-provider-redis/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )

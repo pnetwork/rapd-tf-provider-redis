@@ -14,7 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/pnetwork/radis-tf-plugin/internal/provider/user"
+	"github.com/pnetwork/rapd-tf-provider-redis/internal/provider/user"
 )
 
 // Ensure RedisProvider satisfies various provider interfaces.

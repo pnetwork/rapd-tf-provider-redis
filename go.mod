@@ -1,4 +1,4 @@
-module github.com/pnetwork/radis-tf-plugin
+module github.com/pnetwork/rapd-tf-provider-redis
 
 go 1.20
 
