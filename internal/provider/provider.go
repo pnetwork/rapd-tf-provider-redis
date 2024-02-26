@@ -24,7 +24,6 @@ var _ provider.Provider = &RedisProvider{}
 type RedisProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
-	// testing.
 	version string
 }
 
