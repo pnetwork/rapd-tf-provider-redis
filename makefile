@@ -1,3 +1,6 @@
+VERSION ?= 0.1.0
+EXAMPLE_NAME ?= resource
+TF_LOG_LEVEL ?= INFO
 LOCALBIN ?= $(shell pwd)/bin
 
 GOLANGCI_LINT ?= $(LOCALBIN)/golangci-lint
@@ -28,3 +31,16 @@ default: testacc
 .PHONY: testacc
 testacc:
 	TF_ACC=1 go test ./... -v $(TESTARGS) -timeout 120m
+
+.PHONY: build
+build:
+	go build -o build/rapd.app/rapd/redis/$(VERSION)/darwin_amd64/terraform-provider-redis
+
+.PHONY: clean-example
+clean-example:
+	rm -rf examples/$(EXAMPLE_NAME)/.terraform && rm -f examples/$(EXAMPLE_NAME)/.terraform.lock.hcl
+
+.PHONY: apply-example
+apply-example: clean-example
+	tofu -chdir=examples/$(EXAMPLE_NAME) init -input=false -plugin-dir=$(shell pwd)/build  
+	TF_LOG=$(TF_LOG_LEVEL) tofu -chdir=examples/$(EXAMPLE_NAME) apply -auto-approve
