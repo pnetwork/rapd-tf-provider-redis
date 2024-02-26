@@ -40,7 +40,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "rapd.com/tfplugin/redis",
+		Address: "rapd.app/rapd/redis",
 		Debug:   debug,
 	}
 
