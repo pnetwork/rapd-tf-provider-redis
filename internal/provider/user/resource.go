@@ -5,9 +5,11 @@ import (
 	"fmt"
 
 	"github.com/go-redis/redis/v8"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/pnetwork/rapd-tf-provider-redis/internal/infra"
 )
@@ -44,6 +46,9 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			"db": schema.Int64Attribute{
 				MarkdownDescription: "redis db",
 				Optional:            true,
+				Validators: []validator.Int64{
+					int64validator.AtLeast(0),
+				},
 			},
 			"username": schema.StringAttribute{
 				MarkdownDescription: "redis username",
