@@ -14,3 +14,10 @@
 ```shell
 go install
 ```
+
+## Quick start
+1. please install first
+```sh
+make build VERSION=0.1.0
+make apply-example EXAMPLE_NAME=resource TF_LOG_LEVEL=INFO
+```
