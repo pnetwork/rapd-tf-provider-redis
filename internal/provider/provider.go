@@ -82,7 +82,7 @@ func (p *RedisProvider) Configure(
 	}
 
 	client := redis.NewClient(&redis.Options{
-		Addr:     fmt.Sprintf("%s:%v", data.Host.ValueString(), port),
+		Addr:     fmt.Sprintf("%s:%d", data.Host.ValueString(), port),
 		Password: data.Password.ValueString(),
 		Username: data.Username.ValueString(),
 	})

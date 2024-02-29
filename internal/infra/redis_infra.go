@@ -38,7 +38,7 @@ func (r *RedisConnector) CreateUser(ctx context.Context, username string, passwo
 	}
 
 	if db >= 0 {
-		cmds = append(cmds, "-select", fmt.Sprintf("+select|%v", db))
+		cmds = append(cmds, "-select", fmt.Sprintf("+select|%d", db))
 	}
 
 	return r.Clinet.Do(ctx, cmds...).Err()
@@ -62,7 +62,7 @@ func (r *RedisConnector) UpdateUser(ctx context.Context, username string, passwo
 	}
 
 	if db >= 0 {
-		cmds = append(cmds, "-select", fmt.Sprintf("+select|%v", db))
+		cmds = append(cmds, "-select", fmt.Sprintf("+select|%d", db))
 	}
 
 	pipe := r.Clinet.Pipeline()
