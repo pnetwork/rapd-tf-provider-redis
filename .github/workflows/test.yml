@@ -37,6 +37,8 @@ jobs:
           # Add GOFLAGS to slove the issue: <Error: : error obtaining VCS status: exit status 128. Use -buildvcs=false to disable VCS stamping. (typecheck)>
           GOFLAGS=-buildvcs=false golangci-lint --config .golangci.yml run ./...
 
+  # Generate job check "go generate" result, but it always fail this job by generating diffenrent result.
+  # TODO: Find fail reason
   # generate:
   #   runs-on: ubuntu-latest
   #   steps:
