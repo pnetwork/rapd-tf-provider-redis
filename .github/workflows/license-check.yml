@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [synchronize, reopened, opened]
+  workflow_dispatch:
+
+name: License Check
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          cache: false
+          go-version: '1.21.x'      
+
+      - name: Install dependencies (gomod)
+        run: go get ./cmd  # 需根據元件源碼進入點路徑調整
+
+      - name: Setup Ruby  # for license_finder package
+        uses: ruby/setup-ruby@v1
+        with:
+            ruby-version: '3.3' 
+
+      - name: Install license_finder package
+        run: |
+          gem install license_finder  
+
+      - name: Add permitted licenses
+        run: |
+          license_finder permitted_license add "Apache 2.0" BSD ISC MIT 0BSD BSD-2-Clause BSD-3-Clause
+
+      - name: Add dependency approvals
+        run: |
+          license_finder approvals add "github.com/go-redis/redis/v8 github.com/hashicorp/terraform-plugin-framework github.com/hashicorp/terraform-plugin-framework-validators"
+      
+      - name: Report dependency licenses
+        run: license_finder report
+
+      # Fail if there is any unapproved dependency found.
+      - name: Ensure license compliance
+        run: license_finder
