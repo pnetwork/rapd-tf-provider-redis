@@ -21,7 +21,7 @@ jobs:
           go-version: '1.21.x'      
 
       - name: Install dependencies (gomod)
-        run: go get ./cmd  # 需根據元件源碼進入點路徑調整
+        run: go mod tidy  # 需根據元件源碼進入點路徑調整
 
       - name: Setup Ruby  # for license_finder package
         uses: ruby/setup-ruby@v1
