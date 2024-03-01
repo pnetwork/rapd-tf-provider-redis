@@ -38,8 +38,16 @@ jobs:
 
       - name: Add dependency approvals
         run: |
-          license_finder approvals add "github.com/go-redis/redis/v8 github.com/hashicorp/terraform-plugin-framework github.com/hashicorp/terraform-plugin-framework-validators"
-      
+          license_finder approvals add \
+          github.com/hashicorp/terraform-plugin-framework \
+          github.com/hashicorp/terraform-plugin-framework-validators \
+          github.com/hashicorp/go-plugin github.com/hashicorp/go-uuid \
+          github.com/hashicorp/terraform-plugin-go \
+          github.com/hashicorp/terraform-plugin-log \
+          github.com/hashicorp/terraform-registry-address \
+          github.com/hashicorp/terraform-svchost \
+          github.com/hashicorp/yamux 
+
       - name: Report dependency licenses
         run: license_finder report
 
